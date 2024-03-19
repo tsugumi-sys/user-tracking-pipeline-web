@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  js-script-server:
+    build:
+      context: js-script-server
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./js-script-server:/js-script-server
+    working_dir: /js-script-server
+  web-app:
+    build:
+      context: web-app
+      dockerfile: Dockerfile
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./web-app:/web-app
+    working_dir: /web-app
+    environment:
+      - NODE_ENV=production
+  log-server:
+    build:
+      context: log-server
+      dockerfile: Dockerfile
+    ports:
+      - '8686:8686'
+    volumes:
+      - ./log-server:/log-server
+    working_dir: /log-server
+
+volumes:
+  js-script-server:
+    driver: local
+  web-app:
+    driver: local
+  log-server:
+    driver: local

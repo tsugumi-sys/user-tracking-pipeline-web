@@ -1,0 +1,13 @@
+sources:
+  server:
+    type: http_server
+    address: 0.0.0.0:8686
+    encoding: json
+sinks:
+  console:
+    inputs:
+      - server
+    target: stdout
+    type: console
+    encoding:
+      codec: json
