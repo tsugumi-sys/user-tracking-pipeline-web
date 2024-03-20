@@ -31,6 +31,16 @@ services:
     volumes:
       - ./log-server:/log-server
     working_dir: /log-server
+  npm-registry-server:
+    build:
+      context: npm-registry-server
+      dockerfile: Dockerfile
+    ports:
+      - '4873:4873'
+    volumes:
+      - ./npm-registry-server/conf:/verdaccio/conf
+      - verdaccio-storage:/verdaccio/storage
+      - verdaccio-plugins:/verdaccio/plugins
 
 volumes:
   js-script-server:
@@ -39,3 +49,8 @@ volumes:
     driver: local
   log-server:
     driver: local
+  verdaccio-storage:
+    driver: local
+  verdaccio-plugins:
+    driver: local
+
