@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+          {children}
+          <Script
+            id="loadCustomTrackingScript"
+            async
+            strategy="beforeInteractive"
+            src="http://localhost:3000/script.js"
+          />
+          <Script id="SetAutoTrackingPageView" strategy="beforeInteractive">
+            {`window.CustomDataLayer.config({ send_page_view: true })`}
+          </Script>
+        </main>
+      </body>
     </html>
   );
 }
