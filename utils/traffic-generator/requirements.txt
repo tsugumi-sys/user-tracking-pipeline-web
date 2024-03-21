@@ -1,0 +1,6 @@
+locust
+
+# dev
+ruff
+ruff-lsp
+python-lsp-server
