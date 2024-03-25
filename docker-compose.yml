@@ -31,6 +31,8 @@ services:
     volumes:
       - ./proxy-server:/proxy-server
     working_dir: /proxy-server
+    networks:
+      - log-infra
   log-server:
     build:
       context: log-server
@@ -40,6 +42,8 @@ services:
     volumes:
       - ./log-server:/log-server
     working_dir: /log-server
+    networks:
+      - log-infra
   npm-registry-server:
     build:
       context: npm-registry-server
@@ -63,3 +67,5 @@ volumes:
   verdaccio-plugins:
     driver: local
 
+networks:
+  log-infra:
