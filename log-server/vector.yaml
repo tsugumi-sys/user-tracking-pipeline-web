@@ -11,3 +11,12 @@ sinks:
     type: console
     encoding:
       codec: json
+  pubsub:
+    type: kafka
+    inputs:
+      - server
+    bootstrap_servers: redpanda-0:9092
+    topic: chat-room
+    encoding:
+      codec: json
+
