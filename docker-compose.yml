@@ -111,6 +111,28 @@ services:
       - 8080:8080
     depends_on:
       - redpanda-0
+  timeseries-db:
+    image: prom/prometheus
+    volumes:
+     - './timeseries-db/prometheus.yml:/etc/prometheus/prometheus.yml'
+     - 'prometheus-data:/prometheus'
+    ports:
+     - '9090:9090'
+    networks:
+      - log-infra
+
+  monitoring-ui:
+    image: grafana/grafana:latest
+    volumes:
+      - './monitoring-ui:/var/lib/grafana/dashboards'
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: secret # Change this to a password of your choice
+    ports:
+      - "7070:3000"
+    networks:
+      - log-infra
+    depends_on:
+      - redpanda-0
 
 volumes:
   js-script-server:
@@ -124,6 +146,8 @@ volumes:
   verdaccio-plugins:
     driver: local
   redpanda-0: null
+  prometheus-data:
+    driver: local
 
 
 networks:
