@@ -134,6 +134,17 @@ services:
     depends_on:
       - redpanda-0
 
+  dataflow:
+    build:
+      context: dataflow
+      dockerfile: Dockerfile
+    volumes:
+      - ./dataflow:/dataflow
+    working_dir: /dataflow
+    networks:
+      - log-infra
+
+
 volumes:
   js-script-server:
     driver: local
@@ -147,6 +158,8 @@ volumes:
     driver: local
   redpanda-0: null
   prometheus-data:
+    driver: local
+  dataflow:
     driver: local
 
 
