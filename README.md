@@ -30,7 +30,7 @@ The another layer is focusing on user interfaces and data extractions, such as;
 - some helper methods based on event listeners (for browser)
 - extracting informations and transform into log body.
 
-[`DataDog/browser-sdk`](https://github.com/DataDog/browser-sdk) is an good example in real world. This library provide user interfaces and build log bodies from user inputs. The data transfer layer is separated into another script that is loaded when the sdk is initialized.
+[`DataDog/browser-sdk`](https://github.com/DataDog/browser-sdk) is an good example in the real world. This library provide user interfaces and build log bodies from user inputs. The data transfer layer is separated into another script that is loaded when the sdk is initialized.
 
 
 ### Pipeline Architecture
